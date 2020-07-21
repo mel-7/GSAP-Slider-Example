@@ -10,7 +10,8 @@ $(function () {
 
   function init() {
     TweenLite.set($slides, {
-      left: "-100%",
+      opacity: 0,
+      display: "none",
     });
     $navPrev.on("click", gotoPrevSlide);
     $navNext.on("click", gotoNextSlide);
@@ -40,6 +41,8 @@ $(function () {
       var $prevSlide = $slides.eq(prevSlideID);
       var $currentSlide = $slides.eq(currentSlideID);
       var time = 1;
+
+      console.log($currentSlide);
       if (_time !== null) {
         time = _time;
       }
@@ -49,30 +52,41 @@ $(function () {
       }
       if (direction == "next") {
         TweenLite.to($prevSlide, time, {
-          left: "-100%",
+          opacity: 0,
+          display: "none",
+          //   left: "-100%",
         });
         TweenLite.fromTo(
           $currentSlide,
           time,
           {
-            left: "100%",
+            opacity: 0,
+            display: "none",
+            // left: "100%",
           },
           {
-            left: "0",
+            display: "flex",
+            opacity: 1,
+            // left: "0",
           }
         );
       } else {
         TweenLite.to($prevSlide, time, {
-          left: "100%",
+          //   left: "100%",
+          opacity: 0,
         });
         TweenLite.fromTo(
           $currentSlide,
           time,
           {
-            left: "-100%",
+            // left: "-100%",
+            opacity: 0,
+            display: "none",
           },
           {
-            left: "0",
+            // left: "0",
+            display: "flex",
+            opacity: 1,
           }
         );
       }
